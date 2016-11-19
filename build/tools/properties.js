@@ -1,7 +1,7 @@
 const local_props = require('./properties.local.js');
 const props = {
     folder: {
-        root: __dirname,
+        root: `${__dirname}/..`,
         build: `./dist`,
         apps: './src/apps'
     },

@@ -1,10 +1,10 @@
 import 'babel-polyfill';
-import $ from 'jquery';
-import view01 from './views/view-01/index.js';
-import view02 from './views/view-02/index.js';
-
-$('<h1>View 01</h1>').appendTo('body');
-const ul = $('<ul></ul>').appendTo('body');
-for (const item of view01) {
-    $('<li></li>').text(item).appendTo(ul);
-};
+require.ensure([
+    './views/view-01/index.js',
+    './views/view-02/index.js'
+], function (require) { // Arrow functions webpack issue 3315
+    const view01 = require('./views/view-01/index.js');
+    const view02 = require('./views/view-02/index.js');
+    //
+    document.getElementsByTagName('body')[0].innerHTML += '<h1>View 01</h1>';
+});
