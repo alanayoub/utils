@@ -1,10 +1,16 @@
 import 'babel-polyfill';
+import React from 'react';
+import { render } from 'react-dom';
+
 require.ensure([
     './views/view-01/index.js',
-    './views/view-02/index.js'
-], function (require) { // Arrow functions webpack issue 3315
-    const view01 = require('./views/view-01/index.js');
-    const view02 = require('./views/view-02/index.js');
-    //
-    document.getElementsByTagName('body')[0].innerHTML += '<h1>App 01 / View 01</h1>';
+], function (require) {
+    const View01 = require('./views/view-01/index.js').default;
+
+    const body = document.getElementsByTagName('body')[0];
+    const container = document.createElement('div');
+    container.setAttribute('class', 'A-App');
+    body.insertBefore(container, body.firstChild);
+
+    render(<View01/>, container);
 });
