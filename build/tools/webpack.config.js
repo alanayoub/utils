@@ -34,11 +34,21 @@ config.entry = get_entry();
 const html_webpack_plugins = () => {
     const plugins = [];
     for (const app in config.entry) {
-        plugins.push(new HtmlWebpackPlugin({
+        const path = `src/apps/${app}/index.html`;
+        const config = {
+            inject: false,
             filename: `${app}.index.html`,
             title: `${app}`,
-            hash: false
-        }));
+            hash: false,
+            chunks: [app]
+        };
+        try {
+            fs.accessSync(path, fs.F_OK);
+            config.template = path;
+        } catch (error) {
+            config.template = `src/common/app-x/index.html`;
+        }
+        plugins.push(new HtmlWebpackPlugin(config));
     };
     return plugins;
 };
@@ -66,6 +76,6 @@ module.exports = {
             compress: {warnings: false},
             output: {comments: false}
         }),
-        ...html_webpack_plugins()
+        ...html_webpack_plugins(),
     ]
 };
