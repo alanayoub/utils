@@ -27,8 +27,9 @@ const get_entry = () => {
         });
     };
     get_directories(prop.folder.apps).forEach(directory => {
-        entry[directory] = `${prop.folder.apps}/${directory}/${prop.app.filename}`;
+        entry[`dist/${directory}/bundle`] = `${prop.folder.apps}/${directory}/${prop.app.filename}`;
     });
+    console.log('entry', entry);
     return entry;
 };
 config.entry = get_entry();
@@ -65,8 +66,8 @@ module.exports = {
     context: prop.folder.root,
     entry: config.entry,
     output: {
-        path: `${prop.folder.build}`,
-        publicPath: '',
+        path: `./`,
+        publicPath: '/',
         filename: `[name].[chunkhash].${prop.app.filename_min}`,
         chunkFilename: '[chunkhash].js',
     },
