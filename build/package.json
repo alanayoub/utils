@@ -32,14 +32,17 @@
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.26.0",
     "html-webpack-plugin": "^2.24.1",
-    "postcss": "^5.2.6",
+    "postcss": "^5.2.5",
+    "postcss-calc": "^5.3.1",
     "postcss-loader": "^1.1.1",
-    "webpack": "webpack/webpack",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "webpack": "^1.13.3",
     "webpack-manifest-plugin": "^1.1.0"
   },
   "dependencies": {
-    "isomorphic-style-loader": "^1.1.0",
     "babel-polyfill": "^6.16.0",
+    "isomorphic-style-loader": "^1.1.0",
     "jquery": "^3.1.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
